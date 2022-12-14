@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\Visual Studio Exported Programs\LolAccountLookup\</PublishUrl>
+    <PublishUrl></PublishUrl>
     <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -52,7 +52,7 @@
     <ManifestCertificateThumbprint>C87F8DDDC1A5A6BF3AA94C5B7A5A1B82AD25471C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LoLAccountLookup_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile></ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
