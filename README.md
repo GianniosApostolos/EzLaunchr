@@ -23,6 +23,8 @@ Your buttons are saved as a **_.xml_** file at your desired location when you cl
 2)  Edit button will have image support 
 3)  ~~Users will be able to load from another **_.xml_** file and reload the whole application~~
 4)  Will porovide application customization settings for the user and might change the UI.
+5)  Will allow drag and drop functionallity for files
+6)  Users will be able to re-arange the buttons 
 
 ### Known bugs / issues that will be looked into (everything stated below can be found in the Issues tab aswell):
 
