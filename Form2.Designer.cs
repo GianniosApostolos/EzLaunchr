@@ -66,9 +66,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(21, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 16);
+            this.label1.Size = new System.Drawing.Size(120, 16);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Link";
+            this.label1.Text = "Link or Full file path";
             // 
             // label2
             // 
@@ -112,6 +112,7 @@
             // 
             // Form2
             // 
+            this.AcceptButton = this.addEntryButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -122,6 +123,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.linkTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(230, 300);
             this.MinimumSize = new System.Drawing.Size(230, 300);

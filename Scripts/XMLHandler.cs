@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿/*
+ * This class is responsible for saving and loading the xml file.
+ * When the user chooses a save location then the full xml file path is stored in the application settings in order to be loaded on next launch
+ * Buttons with no links will not be loaded
+ */
+
+
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Xml;
 using System.IO;
 using System.Reflection;
-using System.Xml.Linq;
 using EzLaunchr.Properties;
-
+using System.Collections.Generic;
 
 namespace EzLaunchr.Scripts
 {
@@ -22,17 +21,15 @@ namespace EzLaunchr.Scripts
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         string filePath = "";
 
-        public XMLHandler()
-        {
 
-        }
+        public XMLHandler(){ } //empty constructor
 
 
         public void HandleXMLSave(FlowLayoutPanel panelToUseForButtonSave)
         {
             saveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            saveFileDialog.Filter = "xml Files (*.xml)|*.xml";
-            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.Filter = "XML Files (*.xml)|*.xml";
+            saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -68,7 +65,7 @@ namespace EzLaunchr.Scripts
 
             }
 
-            try  //if the user saves a file and does not exit the application
+            try  //if the user saves a file
             {
                 filePath = Path.GetFullPath(saveFileDialog.FileName); // Get the full path of the save file
                 Settings.Default["SaveFilePath"] = filePath; // Update the application property "SaveFilePath" with the full path of the save file
@@ -83,44 +80,59 @@ namespace EzLaunchr.Scripts
 
         }
 
-        public void HandleXMLLoad(FlowLayoutPanel panelToUseForButtonSave)
+
+        public void HandleXMLLoad(FlowLayoutPanel panelToUseForButtonSave, bool isCustomPath)
         {
+            string filePath="";
             string link = "";
             string description = "";
+            bool inDescriptionNode = false;
 
-            filePath = Settings.Default["SaveFilePath"].ToString();
+            if (isCustomPath)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
 
-           /*  Keeping those comments for now. Will remove later
-            string filePath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            filePath += fileName;
-            Console.WriteLine(filePath);
-            */
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "XML Files (*.xml)|*.xml|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    filePath = openFileDialog.FileName;
+            }
+            else
+                filePath = Settings.Default["SaveFilePath"].ToString();
+
             if (File.Exists(filePath))
             {
+                ClearFlowLayoutPanel(panelToUseForButtonSave); //We only clear the flowLayoutPanel if the user loads a file or on program launch. If he cancels out of the window this part is not reached and the panel is not cleared.
 
                 XmlTextReader xmlTextReader = new XmlTextReader(filePath);
 
                 while (!xmlTextReader.EOF)
                 {
 
-
                     if (xmlTextReader.NodeType == XmlNodeType.Element && xmlTextReader.Name == "Link")
                     {
                         link = xmlTextReader.ReadElementContentAsString();
-                        Console.WriteLine("reading the Link: " + link);
+                        //Console.WriteLine("reading the Link: " + link +" node:  "+inNode); //enable for debug
                     }
+                    
                     if (xmlTextReader.NodeType == XmlNodeType.Element && xmlTextReader.Name == "Description")
                     {
+                        inDescriptionNode = true;
                         description = xmlTextReader.ReadElementContentAsString();
-                        Console.WriteLine("reading the description: " + description);
+                        //Console.WriteLine("reading the description: " + description + " node:  " + inNode); //enable for debug
                     }
 
-                    if (!String.IsNullOrWhiteSpace(link) && !String.IsNullOrWhiteSpace(description)) //This will not load a button if either the description or the link does not exist.
+                    //This will not load if the link is missing or if we haven't been in the description node yet.
+                    if (!String.IsNullOrWhiteSpace(link) && inDescriptionNode) 
                     {
                         LinkButton lb = new LinkButton(link, description);
                         panelToUseForButtonSave.Controls.Add(lb);
                         link = String.Empty;
                         description = String.Empty;
+                        inDescriptionNode = false;
                     }
                     try { xmlTextReader.Read(); }
                     catch (System.Xml.XmlException e)
@@ -140,7 +152,25 @@ namespace EzLaunchr.Scripts
             }
         }
 
+        //Method used to clear the flowlayout panel off of all the LinkButtons before loading the new xml file that the user specifies
+        private void ClearFlowLayoutPanel(FlowLayoutPanel panelToUseForButtonSave)
+        {
+            //We first create a list will all the LinkButtons present in flowlayoutpanel
 
+            List<LinkButton> listLinkButtons = new List<LinkButton>();
+
+            //Populating the list
+            foreach (LinkButton lb in panelToUseForButtonSave.Controls.OfType<LinkButton>())
+                listLinkButtons.Add(lb);
+
+            //Disposing each LinkButton 1 by 1
+            foreach (LinkButton lb in listLinkButtons)
+            {
+                lb.UnsbscribeFromAllEvents();
+                panelToUseForButtonSave.Controls.Remove(lb);
+                lb.Dispose();
+            }
+        }
 
     }
 }
