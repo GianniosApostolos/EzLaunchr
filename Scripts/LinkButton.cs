@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * This class is responsible for creating the Buttons containing the links
+ */
+
+using System;
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
@@ -91,22 +91,27 @@ namespace EzLaunchr
 
 
 
-
             //Adding all the controls on top of the panel
             this.Controls.Add(removeButton);
             this.Controls.Add(editButton);
             this.Controls.Add(displayName);
             this.Controls.Add(topPanel);
         }
+        
+        //Will be called when we want to dispose a button
+        public void UnsbscribeFromAllEvents() 
+        {
 
+            displayName.Click -= displayName_Click;
+            removeButton.Click -= removeButton_Click;
+            editButton.Click -= editButton_Click;
+            this.Click -= LinkButton_Click;
+        }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
             //Removing all event handlers before disposing the button
-
-            displayName.Click -= displayName_Click;
-            removeButton.Click -= removeButton_Click;
-            this.Click -= LinkButton_Click;
+            UnsbscribeFromAllEvents();
 
             this.Dispose();
         }
@@ -129,7 +134,7 @@ namespace EzLaunchr
         }
         
 
-        // Opens link in default browser
+        // Opens link in default browser or launches the desired application
         public void OpenLink()
         {
             Console.WriteLine("Redirecting to: " + link);
@@ -157,20 +162,13 @@ namespace EzLaunchr
                     Console.WriteLine("Exception: " + i.Message + " when trying to find link to follow");
                     string messageBoxMessage = "There was a problem following the link when pressing the button." +
                         "\nThis usually occurs when there was no link attached to the button." +
-                        "\nPlease delete and recreate the problematic button.";
+                        "\nPlease edit or delete and recreate the problematic button.";
                     MessageBox.Show(messageBoxMessage, "Link is missing", MessageBoxButtons.OK);
                     return;
                 }
 
                 throw;
             }
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            this.ResumeLayout(false);
-
         }
     }
 }

@@ -32,9 +32,13 @@
             this.OpenAllButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.createPanelButton = new System.Windows.Forms.Button();
+            this.saveloadPanel = new System.Windows.Forms.Panel();
+            this.saveXmlButton = new System.Windows.Forms.Button();
+            this.loadXmlButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
             this.bottomPanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel.SuspendLayout();
+            this.saveloadPanel.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +67,7 @@
             this.flowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.flowLayoutPanel.Controls.Add(this.createPanelButton);
+            this.flowLayoutPanel.Controls.Add(this.saveloadPanel);
             this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -84,6 +89,45 @@
             this.createPanelButton.Text = "Add link";
             this.createPanelButton.UseVisualStyleBackColor = true;
             this.createPanelButton.Click += new System.EventHandler(this.createPanelButton_Click);
+            // 
+            // saveloadPanel
+            // 
+            this.saveloadPanel.Controls.Add(this.saveXmlButton);
+            this.saveloadPanel.Controls.Add(this.loadXmlButton);
+            this.saveloadPanel.Location = new System.Drawing.Point(3, 129);
+            this.saveloadPanel.Name = "saveloadPanel";
+            this.saveloadPanel.Size = new System.Drawing.Size(115, 120);
+            this.saveloadPanel.TabIndex = 20;
+            // 
+            // saveXmlButton
+            // 
+            this.saveXmlButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.saveXmlButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveXmlButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveXmlButton.ForeColor = System.Drawing.Color.White;
+            this.saveXmlButton.Location = new System.Drawing.Point(0, 0);
+            this.saveXmlButton.MinimumSize = new System.Drawing.Size(80, 30);
+            this.saveXmlButton.Name = "saveXmlButton";
+            this.saveXmlButton.Size = new System.Drawing.Size(115, 57);
+            this.saveXmlButton.TabIndex = 18;
+            this.saveXmlButton.Text = "Save File";
+            this.saveXmlButton.UseVisualStyleBackColor = true;
+            this.saveXmlButton.Click += new System.EventHandler(this.saveXmlButton_Click);
+            // 
+            // loadXmlButton
+            // 
+            this.loadXmlButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.loadXmlButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loadXmlButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadXmlButton.ForeColor = System.Drawing.Color.White;
+            this.loadXmlButton.Location = new System.Drawing.Point(0, 63);
+            this.loadXmlButton.MinimumSize = new System.Drawing.Size(80, 30);
+            this.loadXmlButton.Name = "loadXmlButton";
+            this.loadXmlButton.Size = new System.Drawing.Size(115, 57);
+            this.loadXmlButton.TabIndex = 19;
+            this.loadXmlButton.Text = "Load File";
+            this.loadXmlButton.UseVisualStyleBackColor = true;
+            this.loadXmlButton.Click += new System.EventHandler(this.loadXmlButton_Click);
             // 
             // topPanel
             // 
@@ -122,7 +166,9 @@
             this.Text = "Account LookUp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.flowLayoutPanel.ResumeLayout(false);
+            this.saveloadPanel.ResumeLayout(false);
             this.topPanel.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -135,6 +181,9 @@
         private System.Windows.Forms.Button createPanelButton;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         public System.Windows.Forms.Panel topPanel;
+        private System.Windows.Forms.Button saveXmlButton;
+        private System.Windows.Forms.Button loadXmlButton;
+        private System.Windows.Forms.Panel saveloadPanel;
     }
 }
 

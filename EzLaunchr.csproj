@@ -129,7 +129,6 @@
     <EmbeddedResource Include="Scripts\LinkButton.resx">
       <DependentUpon>LinkButton.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="LoLAccountLookup_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

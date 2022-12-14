@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Xml;
-using System.IO;
-using System.Reflection;
-using System.Xml.Linq;
 using EzLaunchr.Scripts;
 
 namespace EzLaunchr
@@ -22,12 +12,12 @@ namespace EzLaunchr
         XMLHandler xmlHandler = new XMLHandler();
 
 
+            PrivateFontCollection myfontCollection = new PrivateFontCollection();
         public Form1()
         {
             form1 = this;
             InitializeComponent();
             this.flowLayoutPanel.AllowDrop = true;
-
         }
 
         private void createPanelButton_Click(object sender, EventArgs e)
@@ -46,17 +36,35 @@ namespace EzLaunchr
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            xmlHandler.HandleXMLSave(flowLayoutPanel);
+            //Can perform checks to figure out of the user leaves without saving changes
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            xmlHandler.HandleXMLLoad(flowLayoutPanel);
+            xmlHandler.HandleXMLLoad(flowLayoutPanel,false);
         }
 
-        private void flowLayoutPanel_Paint(object sender, PaintEventArgs e)
+        private void saveXmlButton_Click(object sender, EventArgs e)
         {
+            xmlHandler.HandleXMLSave(flowLayoutPanel);
+        }
 
+
+        //Hiding the panel that holds the Save XML and Load XML buttons to reduce visual clutter
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (flowLayoutPanel.Controls.Count > 2) //This check is used in order to determine if there are more than 2 children in the flowlayoutpanel. If there are NOT we do not hide the save nad load buttons. This means that the user didn't add anything yet
+            {
+                if (this.Width <= 280)
+                    saveloadPanel.Visible = false;
+                else
+                    saveloadPanel.Visible = true;
+            }
+        }
+
+        private void loadXmlButton_Click(object sender, EventArgs e)
+        {
+            xmlHandler.HandleXMLLoad(flowLayoutPanel,true); //It loads another xml file
         }
     }
 }
