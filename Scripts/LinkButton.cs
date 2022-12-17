@@ -13,6 +13,7 @@ namespace EzLaunchr
     {
 
         public string link { get; set; }
+        public string imagePath { get; set; }
         public Label displayName { get; set; }
         private Button removeButton;
         private Button editButton;
@@ -27,7 +28,9 @@ namespace EzLaunchr
         {
             this.link = link;
 
-            this.Size = new Size(115, 120);
+
+            //Creating the background panel
+            this.Size = new Size(115, 120); //Width , Height
             this.BackColor = Color.FromArgb(60, 60, 60);
             this.Click += LinkButton_Click;
 
@@ -37,7 +40,7 @@ namespace EzLaunchr
             removeButton.BackColor = Color.FromArgb(50, 50, 50);
             removeButton.ForeColor = Color.White;
             removeButton.Top = this.Top;
-            removeButton.Left = this.Right-25;
+            removeButton.Left = this.Right-23;
             removeButton.Text = "🗙";
             removeButton.TextAlign = ContentAlignment.MiddleCenter;
             removeButton.FlatStyle = FlatStyle.Flat;
@@ -61,13 +64,14 @@ namespace EzLaunchr
             editButton.Click += new EventHandler(editButton_Click);
 
 
-            //Creating the panel that sits on top of the button
+            //Creating the panel that sits on below of the top buttons
             topPanel = new Panel();
             topPanel.BackColor = Color.FromArgb(50, 50, 50);
             topPanel.Size = new Size(this.Width, 25);
             topPanel.Top = this.Top;
             topPanel.Left = this.Left;
-            
+
+
             //topPanelBottomSideColor is the small darker line that serves as a visual seperator on the top part of the LinkButton
             topPanelBottomSideColor = new Panel();
             topPanelBottomSideColor.Parent = topPanel;
@@ -77,7 +81,7 @@ namespace EzLaunchr
 
             // Creating the label that sits on top of the panel
             displayName = new Label();
-            displayName.BackColor = Color.FromArgb(60, 60, 60);
+            displayName.BackColor = Color.Transparent;
             displayName.ForeColor = Color.White;
             displayName.AutoSize = false;
             displayName.Top = this.Top + removeButton.Height + topPanelBottomSideColor.Height + 5;
@@ -90,14 +94,13 @@ namespace EzLaunchr
             displayName.Click += new EventHandler(displayName_Click);
 
 
-
             //Adding all the controls on top of the panel
             this.Controls.Add(removeButton);
             this.Controls.Add(editButton);
             this.Controls.Add(displayName);
             this.Controls.Add(topPanel);
         }
-        
+
         //Will be called when we want to dispose a button
         public void UnsbscribeFromAllEvents() 
         {
@@ -113,6 +116,7 @@ namespace EzLaunchr
             //Removing all event handlers before disposing the button
             UnsbscribeFromAllEvents();
 
+            this.Parent.Controls.Remove(this); //removing LinkButton from the FlowLayoutPanel and then Disposing it
             this.Dispose();
         }
 
@@ -132,7 +136,49 @@ namespace EzLaunchr
         {
             OpenLink();
         }
-        
+
+
+        public void ChangeBackgroundImage(string imagePath)
+        {
+            this.imagePath = imagePath;
+
+            if (String.IsNullOrWhiteSpace(imagePath))
+                return;
+
+            try
+            {
+                //Disposing the old background image if exists.
+                if (this.BackgroundImage != null)
+                    this.BackgroundImage.Dispose();
+
+
+
+                //Changing the background image
+                this.BackgroundImage = ResizedImageFromPath(imagePath, new Size(this.Width,this.Height)); //main panel extends behind some controls so users need to follow the template. Otherwise the image won't be displayed correctly
+                this.BackgroundImageLayout = ImageLayout.Zoom;
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            catch (System.ArgumentException e)
+            {
+                Console.WriteLine("Exception: " + e.Message + " when trying to find iamge link");
+                Console.WriteLine("Path for image: " + imagePath +" might not exist");
+
+                string messageBoxMessage = "Could not find specified image path. Please ensure that there is an image at location: " +imagePath +"\n"
+                    +"This error can be fixed by leaving the image path field empty.";
+
+                MessageBox.Show(messageBoxMessage, "Incorrect image path", MessageBoxButtons.OK);
+            }
+        }
+
+        //Resizing the image specified by a path to a given size.
+        public static Image ResizedImageFromPath(string imagePath, Size size)
+        {
+            Image myOrignialImage = new Bitmap(imagePath);
+            return (Image)(new Bitmap(myOrignialImage,size));
+        }
+
 
         // Opens link in default browser or launches the desired application
         public void OpenLink()
