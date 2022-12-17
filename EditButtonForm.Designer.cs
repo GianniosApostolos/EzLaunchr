@@ -34,6 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.editDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.editLinkTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.editImageTextBox = new System.Windows.Forms.TextBox();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.SuspendLayout();
             // 
             // applyEditButton
@@ -57,7 +60,7 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(21, 125);
+            this.label2.Location = new System.Drawing.Point(21, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 16);
             this.label2.TabIndex = 8;
@@ -69,7 +72,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(21, 48);
+            this.label1.Location = new System.Drawing.Point(21, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 16);
             this.label1.TabIndex = 7;
@@ -79,21 +82,44 @@
             // 
             this.editDescriptionTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.editDescriptionTextBox.ForeColor = System.Drawing.Color.White;
-            this.editDescriptionTextBox.Location = new System.Drawing.Point(24, 141);
+            this.editDescriptionTextBox.Location = new System.Drawing.Point(24, 103);
             this.editDescriptionTextBox.Multiline = true;
             this.editDescriptionTextBox.Name = "editDescriptionTextBox";
             this.editDescriptionTextBox.Size = new System.Drawing.Size(170, 30);
             this.editDescriptionTextBox.TabIndex = 6;
+            this.editDescriptionTextBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.editDescriptionTextBox_MouseDoubleClick);
             // 
             // editLinkTextBox
             // 
             this.editLinkTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.editLinkTextBox.ForeColor = System.Drawing.Color.White;
-            this.editLinkTextBox.Location = new System.Drawing.Point(24, 64);
+            this.editLinkTextBox.Location = new System.Drawing.Point(24, 45);
             this.editLinkTextBox.Multiline = true;
             this.editLinkTextBox.Name = "editLinkTextBox";
             this.editLinkTextBox.Size = new System.Drawing.Size(170, 30);
             this.editLinkTextBox.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(21, 142);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 16);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Image path";
+            // 
+            // editImageTextBox
+            // 
+            this.editImageTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.editImageTextBox.ForeColor = System.Drawing.Color.White;
+            this.editImageTextBox.Location = new System.Drawing.Point(24, 161);
+            this.editImageTextBox.Multiline = true;
+            this.editImageTextBox.Name = "editImageTextBox";
+            this.editImageTextBox.Size = new System.Drawing.Size(170, 30);
+            this.editImageTextBox.TabIndex = 10;
             // 
             // EditButtonForm
             // 
@@ -102,6 +128,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(214, 261);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.editImageTextBox);
             this.Controls.Add(this.applyEditButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -127,5 +155,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox editDescriptionTextBox;
         private System.Windows.Forms.TextBox editLinkTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox editImageTextBox;
+        private System.Windows.Forms.ColorDialog colorDialog;
     }
 }
