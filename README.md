@@ -26,16 +26,16 @@ There is a template image which can be used as a guide to create images that wil
 5) Users can now create buttons with empty descriptions. Empty link buttons are not supported intentionally.
 
 
-### Future updates may include (in no specific order and exluding fixing bugs):
+### Future updates may include (in no specific order and excluding fixing bugs):
 
 1)  ~~Users will be able to add an image when creating buttons.~~
 2)  ~~Edit button will have image support~~
 3)  ~~Users will be able to load from another **_.xml_** file and reload the whole application~~
-4)  Will porovide application customization settings for the user and might change the UI.
-5)  Will allow drag and drop functionallity for files
-6)  Users will be able to re-arange the buttons 
+4)  Will provide application customization settings for the user and might change the UI.
+5)  Will allow drag and drop functionality for files
+6)  Users will be able to re-arrange the buttons 
 
-### Known bugs / issues that will be looked into (everything stated below can be found in the Issues tab aswell):
+### Known bugs / issues that will be looked into (everything stated below can be found in the Issues tab as well):
 
 **SQUASHED** ALL KNOWN BUGS!😎
 
