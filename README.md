@@ -10,8 +10,8 @@ Your buttons are saved as a **_.xml_** file at your desired location when you cl
 **_Download latest version [here](https://github.com/GianniosApostolos/EzLaunchr/releases)_**
 
 
-### Newest Update log: 17/12/2022
-1) Users can Users can now add background images on their created buttons.
+### Newest Update log: 17/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.0.2))
+1) Users can now add background images on their created buttons.
 
 2) Users can double click on the description textbox when editing their button to change the color of the description label. This can give new customization options and might help with clarity when they use background images on their buttons.
 
