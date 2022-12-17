@@ -1,14 +1,21 @@
 # EzLaunchr
 ### **Open computer files or internet links faster and easier!**
 
-This program was initially made for people that want to visit certain webpages constantly. Multiple bookmarks can now be avoided by just inserting the internet links in the application and clicking the relative buttons. Web browser doesn't need to be running in order to use this program. The user may also execute other windows applications by specifying the full file path when adding a new button.
+This program was initially made for people that want to visit certain webpages constantly. Multiple bookmarks can now be avoided by just inserting the **internet links** in the application and clicking the relative buttons. Web browser doesn't need to be running in order to use this program. The user may also execute other windows **applications** or open **folders** and **documents** by specifying the full file path when adding a new button.
 
 Multiple instances of this application can be used in order to separate their functionality and create a folder-like structure. The user may create multiple copies of the **_.exe_** file and rename it as they prefer. They may later add the newly creating copy of the **_.exe_** file to their desired button and succeed on creating a folder-like structure.
 
 Your buttons are saved as a **_.xml_** file at your desired location when you close the program. You may modify that **_.xml_** file and the effects will take place next time you launch the application.
 
 
-### Newest Update log: 15/12/2022
+### Newest Update log: 17/12/2022
+1) Users can Users can now add background images on their created buttons.
+
+2) Users can double click on the description textbox when editing their button to change the color of the description label. This can give new customization options and might help with clarity when they use background images on their buttons.
+
+There is a template image which can be used as a guide to create images that will fit in your buttons. It can be located in the **_Images_** folder. Image should be 115x120 (width x height). And a padding of 25px should be left from the top side. Otherwise part of the image will be covered by other controls. 
+
+### Update log: 15/12/2022
 
 1) Users can now manually save their **_.xml_** and no longer need to save when closing the application
 2) Users can now load from another **_.xml_** file and reload the whole application
@@ -19,8 +26,8 @@ Your buttons are saved as a **_.xml_** file at your desired location when you cl
 
 ### Future updates may include (in no specific order and exluding fixing bugs):
 
-1)  Users will be able to add an image when creating buttons.
-2)  Edit button will have image support 
+1)  ~~Users will be able to add an image when creating buttons.~~
+2)  ~~Edit button will have image support~~
 3)  ~~Users will be able to load from another **_.xml_** file and reload the whole application~~
 4)  Will porovide application customization settings for the user and might change the UI.
 5)  Will allow drag and drop functionallity for files
