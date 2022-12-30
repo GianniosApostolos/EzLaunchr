@@ -1,5 +1,5 @@
 ﻿/*
- * This class is responsible for creating the Buttons containing the links
+ * This class is responsible for creating and disposing the Buttons containing the links
  */
 
 using System;
@@ -17,6 +17,8 @@ namespace EzLaunchr
         public Label displayName { get; set; }
         private Button removeButton;
         private Button editButton;
+        private Button upArrowButton;
+        private Button downArrowButton;
         private Panel topPanel;
         private Panel topPanelBottomSideColor;
 
@@ -64,7 +66,7 @@ namespace EzLaunchr
             editButton.Click += new EventHandler(editButton_Click);
 
 
-            //Creating the panel that sits on below of the top buttons
+            //Creating the panel that sits on below the top buttons
             topPanel = new Panel();
             topPanel.BackColor = Color.FromArgb(50, 50, 50);
             topPanel.Size = new Size(this.Width, 25);
@@ -94,17 +96,61 @@ namespace EzLaunchr
             displayName.Click += new EventHandler(displayName_Click);
 
 
+            // Creating the button that decreases this component's index and thus rearanging the button in the flowlayoutpanel
+            downArrowButton = new Button();
+            downArrowButton.Size = new Size(25, 25);
+            downArrowButton.BackColor = Color.FromArgb(50, 50, 50);
+            downArrowButton.ForeColor = Color.White;
+            downArrowButton.Top = this.Bottom-25;
+            downArrowButton.Left = this.Right-20;
+            downArrowButton.Text = "⌄";
+            downArrowButton.TextAlign = ContentAlignment.MiddleCenter;
+            downArrowButton.FlatStyle = FlatStyle.Flat;
+            downArrowButton.FlatAppearance.BorderSize = 0;
+            //Clicking on the button rearanges it in the flowlayout panel
+            downArrowButton.Click += new EventHandler(downArrowButton_Click);
+
+
+            // Creating the button that increases this component's index and thus rearanging the button in the flowlayoutpanel
+            upArrowButton = new Button();
+            upArrowButton.Size = new Size(25, 25);
+            upArrowButton.BackColor = Color.FromArgb(50, 50, 50);
+            upArrowButton.ForeColor = Color.White;
+            upArrowButton.Top = this.Bottom-50;
+            upArrowButton.Left = this.Right-20;
+            upArrowButton.Text = "⌃";
+            upArrowButton.TextAlign = ContentAlignment.MiddleCenter;
+            upArrowButton.FlatStyle = FlatStyle.Flat;
+            upArrowButton.FlatAppearance.BorderSize = 0;
+            //Clicking on the button rearanges it in the flowlayout panel
+            upArrowButton.Click += new EventHandler(upArrowButton_Click);
+
+
             //Adding all the controls on top of the panel
             this.Controls.Add(removeButton);
             this.Controls.Add(editButton);
+            this.Controls.Add(downArrowButton);
+            this.Controls.Add(upArrowButton);
             this.Controls.Add(displayName);
             this.Controls.Add(topPanel);
         }
 
-        //Will be called when we want to dispose a button
+        private void upArrowButton_Click(object sender, EventArgs e)
+        {
+            ArrangeLinkButtonInFlowLayoutPanel(true); // The bool true/false represents descending or ascending arrangement respectively
+        }
+
+        private void downArrowButton_Click(object sender, EventArgs e)
+        {
+            ArrangeLinkButtonInFlowLayoutPanel(false); // The bool true/false represents descending or ascending arrangement respectively
+        }
+
+        // Will be called when we want to dispose a button
+        // Add new event handlers in this method when adding components in this class
         public void UnsbscribeFromAllEvents() 
         {
-
+            upArrowButton.Click -= upArrowButton_Click;
+            downArrowButton.Click -= downArrowButton_Click;
             displayName.Click -= displayName_Click;
             removeButton.Click -= removeButton_Click;
             editButton.Click -= editButton_Click;
@@ -216,5 +262,31 @@ namespace EzLaunchr
                 throw;
             }
         }
+
+
+        // This function is responsible for arranging a Link Button in the flowLayoutPanel.
+        // It assumes that the Parent of the LinkButton is a FlowLayoutPanel.
+        // If descending == true it means that the LinkButton will be pushed back (reduce its index)
+        // If descending == false it means that the LinkButton will be pushed forwards (increase its index)
+        public void ArrangeLinkButtonInFlowLayoutPanel(bool descending)
+        {
+            FlowLayoutPanel flowPanel = (FlowLayoutPanel) this.Parent;
+            int index = flowPanel.Controls.GetChildIndex(this);
+
+            if (index>2 && descending)
+                flowPanel.Controls.SetChildIndex(this, --index);
+
+            if (!descending)
+            {
+                int totalChildrenInFlowLayoutPanel = flowPanel.Controls.Count;
+
+                if (index < totalChildrenInFlowLayoutPanel)
+                    flowPanel.Controls.SetChildIndex(this, ++index);
+
+            }
+
+        }
+
+
     }
 }
