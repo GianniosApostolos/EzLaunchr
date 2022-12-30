@@ -10,17 +10,21 @@ Your buttons are saved as a **_.xml_** file at your desired location. You may mo
 **_Download latest version [here](https://github.com/GianniosApostolos/EzLaunchr/releases)_**
 
 
-### Newest Update log: 17/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.0.2))
+### Newest Update log: 30/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.1))
+1) Users are now able to rearrange the buttons to their liking. No more unecessary **_.xml_** file modifications!
+
+### Update log: 17/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.0.2))
 1) Users can now add background images on their created buttons.
 
 2) Users can double click on the description textbox when editing their button to change the color of the description label. This can give new customization options and might help with clarity when they use background images on their buttons.
 
 There is a template image which can be used as a guide to create images that will fit in your buttons. It can be located in the **_Images_** folder. Image should be 115x120 (width x height). And a padding of 25px should be left from the top side. Otherwise part of the image will be covered by other controls. 
 
+
 ### Update log: 15/12/2022
 
-1) Users can now manually save their **_.xml_** and no longer need to save when closing the application
-2) Users can now load from another **_.xml_** file and reload the whole application
+1) Users can now manually save their **_.xml_** and no longer need to save when closing the application.
+2) Users can now load from another **_.xml_** file and reload the whole application.
 3) Closing the main application form no longer opens the save dialogue. Users need to save manually.
 4) Shrinking the form will hide the SAVE/LOAD Buttons in order to remove visual clutter. Expanding it, will reveal them again.
 5) Users can now create buttons with empty descriptions. Empty link buttons are not supported intentionally.
@@ -29,11 +33,11 @@ There is a template image which can be used as a guide to create images that wil
 ### Future updates may include (in no specific order and excluding fixing bugs):
 
 1)  ~~Users will be able to add an image when creating buttons.~~
-2)  ~~Edit button will have image support~~
-3)  ~~Users will be able to load from another **_.xml_** file and reload the whole application~~
+2)  ~~Edit button will have image support.~~
+3)  ~~Users will be able to load from another **_.xml_** file and reload the whole application.~~
 4)  Will provide application customization settings for the user and might change the UI.
-5)  Will allow drag and drop functionality for files
-6)  Users will be able to re-arrange the buttons 
+5)  Will allow drag and drop functionality for files.
+6)  ~~Users will be able to re-arrange the buttons.~~ 
 
 ### Known bugs / issues that will be looked into (everything stated below can be found in the Issues tab as well):
 
