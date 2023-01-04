@@ -9,8 +9,16 @@ Your buttons are saved as a **_.xml_** file at your desired location. You may mo
 
 **_Download latest version [here](https://github.com/GianniosApostolos/EzLaunchr/releases)_**
 
+### Newest Update log: 4/1/2023 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.2))
+**Happy New Year!**
+1) Users can now overwrite the _"latest save file"_ by clicking the "↺" button at the top right of the Save File button. You no longer have to find and overwrite the old save file manually 🤩
 
-### Newest Update log: 30/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.1))
+2) Loading a **_.xml_** file marks it as the _"latest save file"_ and you can easily overwrite it using the overwrite button
+
+3) Users can now close the application after loading a **_.xml_** file without manually saving.
+
+
+### Update log: 30/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.1))
 1) Users are now able to rearrange the buttons to their liking. No more unecessary **_.xml_** file modifications!
 
 ### Update log: 17/12/2022 ([Download this version](https://github.com/GianniosApostolos/EzLaunchr/releases/tag/v1.0.0.2))
