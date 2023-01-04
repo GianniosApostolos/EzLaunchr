@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.linkTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
@@ -35,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.addEntryButton = new System.Windows.Forms.Button();
             this.opacitySlider = new System.Windows.Forms.TrackBar();
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.opacitySlider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,6 +109,7 @@
             this.opacitySlider.Size = new System.Drawing.Size(104, 45);
             this.opacitySlider.TabIndex = 5;
             this.opacitySlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.toolTip2.SetToolTip(this.opacitySlider, "Change the opacity of the \"Add Button\" and \"Edit Button\" forms\r\n");
             this.opacitySlider.Value = 10;
             this.opacitySlider.Scroll += new System.EventHandler(this.opacitySlider_Scroll);
             // 
@@ -144,5 +147,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button addEntryButton;
         private System.Windows.Forms.TrackBar opacitySlider;
+        private System.Windows.Forms.ToolTip toolTip2;
     }
 }

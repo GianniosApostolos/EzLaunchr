@@ -66,6 +66,11 @@ namespace EzLaunchr
         {
             xmlHandler.HandleXMLLoad(flowLayoutPanel,true); //It loads another xml file
         }
+
+        private void overwriteSave_Click(object sender, EventArgs e)
+        {
+            xmlHandler.HandleXMLOverwrite(flowLayoutPanel);
+        }
     }
 }
 
