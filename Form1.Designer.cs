@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.OpenAllButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -37,6 +38,8 @@
             this.loadXmlButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
             this.bottomPanel = new System.Windows.Forms.Panel();
+            this.overwriteSave = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.flowLayoutPanel.SuspendLayout();
             this.saveloadPanel.SuspendLayout();
             this.topPanel.SuspendLayout();
@@ -58,6 +61,7 @@
             this.OpenAllButton.Size = new System.Drawing.Size(700, 100);
             this.OpenAllButton.TabIndex = 8;
             this.OpenAllButton.Text = "Open all links";
+            this.toolTip.SetToolTip(this.OpenAllButton, "Open all button links");
             this.OpenAllButton.UseVisualStyleBackColor = false;
             this.OpenAllButton.Click += new System.EventHandler(this.OpenAllButton_Click);
             // 
@@ -87,11 +91,13 @@
             this.createPanelButton.Size = new System.Drawing.Size(115, 120);
             this.createPanelButton.TabIndex = 17;
             this.createPanelButton.Text = "Add link";
+            this.toolTip.SetToolTip(this.createPanelButton, "Add a new button");
             this.createPanelButton.UseVisualStyleBackColor = true;
             this.createPanelButton.Click += new System.EventHandler(this.createPanelButton_Click);
             // 
             // saveloadPanel
             // 
+            this.saveloadPanel.Controls.Add(this.overwriteSave);
             this.saveloadPanel.Controls.Add(this.saveXmlButton);
             this.saveloadPanel.Controls.Add(this.loadXmlButton);
             this.saveloadPanel.Location = new System.Drawing.Point(3, 129);
@@ -111,6 +117,7 @@
             this.saveXmlButton.Size = new System.Drawing.Size(115, 57);
             this.saveXmlButton.TabIndex = 18;
             this.saveXmlButton.Text = "Save File";
+            this.toolTip.SetToolTip(this.saveXmlButton, "Save as - Choose where to save the file");
             this.saveXmlButton.UseVisualStyleBackColor = true;
             this.saveXmlButton.Click += new System.EventHandler(this.saveXmlButton_Click);
             // 
@@ -126,6 +133,7 @@
             this.loadXmlButton.Size = new System.Drawing.Size(115, 57);
             this.loadXmlButton.TabIndex = 19;
             this.loadXmlButton.Text = "Load File";
+            this.toolTip.SetToolTip(this.loadXmlButton, "Load file from disk - will clear existing buttons");
             this.loadXmlButton.UseVisualStyleBackColor = true;
             this.loadXmlButton.Click += new System.EventHandler(this.loadXmlButton_Click);
             // 
@@ -151,6 +159,22 @@
             this.bottomPanel.Name = "bottomPanel";
             this.bottomPanel.Size = new System.Drawing.Size(700, 100);
             this.bottomPanel.TabIndex = 11;
+            // 
+            // overwriteSave
+            // 
+            this.overwriteSave.BackColor = System.Drawing.Color.Transparent;
+            this.overwriteSave.FlatAppearance.BorderSize = 0;
+            this.overwriteSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.overwriteSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overwriteSave.ForeColor = System.Drawing.Color.White;
+            this.overwriteSave.Location = new System.Drawing.Point(90, 3);
+            this.overwriteSave.Name = "overwriteSave";
+            this.overwriteSave.Size = new System.Drawing.Size(22, 22);
+            this.overwriteSave.TabIndex = 20;
+            this.overwriteSave.Text = "↺";
+            this.toolTip.SetToolTip(this.overwriteSave, "Save - Overwrite current save file");
+            this.overwriteSave.UseVisualStyleBackColor = false;
+            this.overwriteSave.Click += new System.EventHandler(this.overwriteSave_Click);
             // 
             // Form1
             // 
@@ -184,6 +208,8 @@
         private System.Windows.Forms.Button saveXmlButton;
         private System.Windows.Forms.Button loadXmlButton;
         private System.Windows.Forms.Panel saveloadPanel;
+        private System.Windows.Forms.Button overwriteSave;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

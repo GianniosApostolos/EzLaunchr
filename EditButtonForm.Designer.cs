@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditButtonForm));
             this.applyEditButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.editImageTextBox = new System.Windows.Forms.TextBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // applyEditButton
@@ -65,6 +67,8 @@
             this.label2.Size = new System.Drawing.Size(76, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "Description";
+            this.toolTip3.SetToolTip(this.label2, "Change the color of the description text by double-clicking in the text field bel" +
+        "ow");
             // 
             // label1
             // 
@@ -158,5 +162,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox editImageTextBox;
         private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.ToolTip toolTip3;
     }
 }

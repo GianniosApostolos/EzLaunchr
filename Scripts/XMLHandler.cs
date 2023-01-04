@@ -37,71 +37,7 @@ namespace EzLaunchr.Scripts
                 if (File.Exists(saveFileDialog.FileName))
                     File.Delete(saveFileDialog.FileName);
 
-
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.Indent = true;
-                settings.NewLineOnAttributes = true;
-
-                XmlWriter xmlWriter = XmlWriter.Create(saveFileDialog.FileName,settings);
-
-
-
-                xmlWriter.WriteStartDocument();
-                xmlWriter.WriteStartElement(string.Empty, "ButtonInfo", string.Empty);
-
-
-
-                foreach (LinkButton lb in panelToUseForButtonSave.Controls.OfType<LinkButton>())
-                {
-                    xmlWriter.WriteStartElement("Link");
-                    xmlWriter.WriteString(lb.link);
-                    xmlWriter.WriteEndElement();
-
-
-
-                    xmlWriter.WriteStartElement("Description");
-                    xmlWriter.WriteString(lb.displayName.Text);
-                    xmlWriter.WriteEndElement();
-
-
-
-                    xmlWriter.WriteStartElement("ImagePath");
-                    xmlWriter.WriteString(lb.imagePath);
-                    xmlWriter.WriteEndElement();
-
-
-                    xmlWriter.WriteStartElement("Description_Label_ForeColor");
-
-
-
-                    xmlWriter.WriteStartElement("Color.A");
-                    xmlWriter.WriteString(lb.displayName.ForeColor.A.ToString());
-                    xmlWriter.WriteEndElement();
-
-
-
-                    xmlWriter.WriteStartElement("Color.R");
-                    xmlWriter.WriteString(lb.displayName.ForeColor.R.ToString());
-                    xmlWriter.WriteEndElement();
-
-
-
-                    xmlWriter.WriteStartElement("Color.G");
-                    xmlWriter.WriteString(lb.displayName.ForeColor.G.ToString());
-                    xmlWriter.WriteEndElement();
-
-
-                    xmlWriter.WriteStartElement("Color.B");
-                    xmlWriter.WriteString(lb.displayName.ForeColor.B.ToString());
-                    xmlWriter.WriteEndElement();
-
-                    xmlWriter.WriteEndElement(); //Description_Label_ForeColor
-                }
-
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteEndDocument();
-                xmlWriter.Close();
-
+                XMLWriterSave(panelToUseForButtonSave,false);
             }
 
             try  //if the user saves a file
@@ -118,7 +54,6 @@ namespace EzLaunchr.Scripts
             }
 
         }
-
 
 
         // We can either specify a custom path or load the last saved XML. Custom path is only specified when the user tries to load an XML after the application has started
@@ -151,6 +86,9 @@ namespace EzLaunchr.Scripts
 
             if (File.Exists(filePath))
             {
+                Settings.Default["SaveFilePath"] = filePath; //Setting the default saveFilePath to the latest loaded file
+                Settings.Default.Save(); //Save all application properties
+                Console.WriteLine("Application properties have saved the following SaveFilePath: " + Settings.Default["SaveFilePath"]);
                 ClearFlowLayoutPanel(panelToUseForButtonSave); // We only clear the flowLayoutPanel if the user loads a file or on program launch. If he cancels out of the window this part is not reached and the panel is not cleared.
 
                 XmlTextReader xmlTextReader = new XmlTextReader(filePath);
@@ -248,6 +186,99 @@ namespace EzLaunchr.Scripts
                 Console.WriteLine("Could not find file at location: " + filePath);
             }
         }
+
+
+
+        public void HandleXMLOverwrite(FlowLayoutPanel panelToUseForButtonSave)
+        {
+            string saveFilePath=Settings.Default["SaveFilePath"].ToString();
+
+            // We can only save if there is a default save path in our settings
+            if (File.Exists(saveFilePath))
+            {
+                XMLWriterSave(panelToUseForButtonSave,true);
+                Console.WriteLine("Overwritten file path at: " + saveFilePath);
+            }
+        }
+
+        // This method can handle both the Saving as new file and overwriting an existing save file
+        private void XMLWriterSave(FlowLayoutPanel panelToUseForButtonSave, bool overwriteSave)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.NewLineOnAttributes = true;
+            XmlWriter xmlWriter = null;
+
+
+            // If we don't overwrite our save file then we are picking a save location from a saveFiledialog
+            // Otherwise we save at the default save path
+            if (!overwriteSave)
+                xmlWriter = XmlWriter.Create(saveFileDialog.FileName, settings);
+            else if (overwriteSave)
+                xmlWriter = XmlWriter.Create(Settings.Default["SaveFilePath"].ToString(), settings);
+
+
+
+            xmlWriter.WriteStartDocument();
+            xmlWriter.WriteStartElement(string.Empty, "ButtonInfo", string.Empty);
+
+
+
+            foreach (LinkButton lb in panelToUseForButtonSave.Controls.OfType<LinkButton>())
+            {
+                xmlWriter.WriteStartElement("Link");
+                xmlWriter.WriteString(lb.link);
+                xmlWriter.WriteEndElement();
+
+
+
+                xmlWriter.WriteStartElement("Description");
+                xmlWriter.WriteString(lb.displayName.Text);
+                xmlWriter.WriteEndElement();
+
+
+
+                xmlWriter.WriteStartElement("ImagePath");
+                xmlWriter.WriteString(lb.imagePath);
+                xmlWriter.WriteEndElement();
+
+
+                xmlWriter.WriteStartElement("Description_Label_ForeColor");
+
+
+
+                xmlWriter.WriteStartElement("Color.A");
+                xmlWriter.WriteString(lb.displayName.ForeColor.A.ToString());
+                xmlWriter.WriteEndElement();
+
+
+
+                xmlWriter.WriteStartElement("Color.R");
+                xmlWriter.WriteString(lb.displayName.ForeColor.R.ToString());
+                xmlWriter.WriteEndElement();
+
+
+
+                xmlWriter.WriteStartElement("Color.G");
+                xmlWriter.WriteString(lb.displayName.ForeColor.G.ToString());
+                xmlWriter.WriteEndElement();
+
+
+                xmlWriter.WriteStartElement("Color.B");
+                xmlWriter.WriteString(lb.displayName.ForeColor.B.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteEndElement(); //Description_Label_ForeColor
+            }
+
+            xmlWriter.WriteEndElement();
+            xmlWriter.WriteEndDocument();
+            xmlWriter.Close();
+        }
+
+
+
+
 
         //Method used to clear the flowlayout panel off of all the LinkButtons before loading the new xml file that the user specifies
         private void ClearFlowLayoutPanel(FlowLayoutPanel panelToUseForButtonSave)
